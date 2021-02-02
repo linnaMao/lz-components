@@ -74,11 +74,13 @@ const FastForm: React.FC<IFastFormProps> = props => {
   };
 
   React.useEffect(() => {
-    const { birthday } = defaultValue;
+    console.log('defaultValue :>> ', defaultValue);
     // 初始值判断优化
-    if (birthday) {
-      defaultValue.birthday = moment(birthday) as any;
-    }
+    // typeArr.forEach((i) => {
+    //   if (i.type === 'date') {
+    //     defaultValue[i.value] = moment(i.value) as any;
+    //   }
+    // })
 
     // 初始值绑定在value上，在重置过程中可以清楚初始值
     form.setFieldsValue(defaultValue);

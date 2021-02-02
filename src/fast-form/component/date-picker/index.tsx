@@ -4,20 +4,21 @@ import {
   TimePicker as AntdTimePicker,
   TimePicker,
 } from 'antd';
+import { IProps } from '../type';
 
 const { RangePicker } = AntdDatePicker;
 
-interface IDatePickerProps {
+interface IDatePickerProps extends IProps {
   type: string;
 }
 
 const DatePicker: React.FC<IDatePickerProps> = props => {
-  const { type } = props;
+  const { type, value, onChange } = props;
 
   const renderDate = () => {
     switch (type) {
       case 'datePicker':
-        return <AntdDatePicker style={{ width: '100%' }} />;
+        return <AntdDatePicker />;
       case 'dateTimePicker':
         return (
           <AntdDatePicker

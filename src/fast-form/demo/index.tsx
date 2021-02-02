@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FastForm }  from 'lz-cps';
+import { FastForm } from 'lz-cps';
 
 const Index: React.FC = () => {
   const typeArr = [
@@ -113,6 +113,7 @@ const Index: React.FC = () => {
     age: 18,
     sex: '男',
     birthday: '2020-01-01',
+    date: '2020-10-01',
     resume: '我是haha',
     nation: '中国',
     interest: ['打篮球'],

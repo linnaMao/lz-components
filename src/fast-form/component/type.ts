@@ -1,4 +1,6 @@
+import { Moment } from 'moment';
+
 export interface IProps {
-  value?: string;
+  value?: string | Moment;
   onChange?: (value: string) => void;
 }
