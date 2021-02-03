@@ -1,14 +1,10 @@
 import * as React from 'react';
-
-type TOptions = {
-  rows?: number;
-  suffix?: string;
-};
-
+import { Tooltip } from 'antd';
 interface IOverTextProps {
   data: string;
   rows?: number;
   suffix?: string;
+  one?: boolean;
 }
 
 const pxToNumber = (value: string | null): number => {
@@ -19,8 +15,9 @@ const pxToNumber = (value: string | null): number => {
 };
 
 const OverText: React.FC<IOverTextProps> = props => {
-  const { data, rows = 2 } = props;
+  const { data, rows = 2, one } = props;
   const [more, setMore] = React.useState(false);
+  const [tooltip, setIsTooltip] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -39,8 +36,21 @@ const OverText: React.FC<IOverTextProps> = props => {
     const originPaddingTop = pxToNumber(originStyle.paddingTop);
     const maxHeight =
       originHeight * rows! + originPaddingBottom + originPaddingTop;
-
     const newItem = document.createElement('a');
+
+    if (one) {
+      const originWidth = originStyle.width;
+      current.style.whiteSpace = 'noWrap';
+      const wrapWidth = originStyle.width;
+      if (originWidth > wrapWidth) {
+        setIsTooltip(true);
+
+        current.style.width = originWidth;
+        current.style.overflow = 'hidden';
+        current.style.textOverflow = 'ellipsis';
+      }
+      return;
+    }
 
     if (
       (maxHeight > current.offsetHeight && current.textContent === data) ||
@@ -49,6 +59,7 @@ const OverText: React.FC<IOverTextProps> = props => {
       return;
     }
 
+    setIsTooltip(true);
     if (!more) {
       const textNode = document.createTextNode('查看更多');
 
@@ -66,6 +77,7 @@ const OverText: React.FC<IOverTextProps> = props => {
       }
     } else {
       const textNode = document.createTextNode('收起');
+
       newItem.appendChild(textNode);
       newItem.onclick = () => setMore(false);
 
@@ -74,7 +86,7 @@ const OverText: React.FC<IOverTextProps> = props => {
     }
   }, [more, data, rows]);
 
-  return <div ref={ref}>{data}</div>;
+  return <>{<div ref={ref}>{data}</div>}</>;
 };
 
 export default OverText;
