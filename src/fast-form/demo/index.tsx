@@ -112,6 +112,7 @@ const Index: React.FC = () => {
     name: 'haha',
     age: 18,
     sex: '男',
+    province: ['zhejiang', 'hangzhou'],
     birthday: '2020-01-01',
     date: '2020-10-01',
     resume: '我是haha',

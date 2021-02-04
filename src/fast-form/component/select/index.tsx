@@ -20,7 +20,11 @@ const Select: React.FC<ISelectProps> = props => {
 
   return (
     <>
-      <AntdSelect onChange={handleChange} mode={mode as TMode}>
+      <AntdSelect
+        onChange={handleChange}
+        mode={mode as TMode}
+        value={value as string}
+      >
         {options?.map((item: string) => (
           <Option value={item} key={item}>
             {item}

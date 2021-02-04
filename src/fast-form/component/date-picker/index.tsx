@@ -5,6 +5,7 @@ import {
   TimePicker,
 } from 'antd';
 import { IProps } from '../type';
+import moment from 'moment';
 
 const { RangePicker } = AntdDatePicker;
 
@@ -18,17 +19,26 @@ const DatePicker: React.FC<IDatePickerProps> = props => {
   const renderDate = () => {
     switch (type) {
       case 'datePicker':
-        return <AntdDatePicker />;
+        return (
+          <AntdDatePicker style={{ width: '100%' }} value={moment(value)} />
+        );
       case 'dateTimePicker':
         return (
           <AntdDatePicker
             showTime
             format="YYYY-MM-DD HH:mm:ss"
             style={{ width: '100%' }}
+            value={moment(value)}
           />
         );
       case 'montnPicker':
-        return <AntdDatePicker picker="month" style={{ width: '100%' }} />;
+        return (
+          <AntdDatePicker
+            picker="month"
+            style={{ width: '100%' }}
+            value={moment(value)}
+          />
+        );
       case 'rangePicker':
         return <RangePicker style={{ width: '100%' }} />;
       case 'rangeTimePicker':
