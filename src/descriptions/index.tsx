@@ -31,7 +31,7 @@ const Descriptions: React.FC<IDescriptionsProps> = props => {
       case 'url':
         return <a href={da}>查看{ke}</a>;
       case 'more':
-        return <OverText data={data[ke]} rows={2} />;
+        return <OverText data={data[ke]} />;
       default:
         return data[ke];
     }
