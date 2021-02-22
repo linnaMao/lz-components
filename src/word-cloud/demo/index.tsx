@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import WordCloud from '..';
+import { WordCloud } from 'lz-cps';
 
 const JsonList = [
   {

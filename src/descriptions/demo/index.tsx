@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Descriptions from '..';
+import { Descriptions } from 'lz-cps';
 
 import { TData, TEnum } from '../type';
 
