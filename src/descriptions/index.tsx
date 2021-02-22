@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Descriptions as AntdDescription, Typography } from 'antd';
-import OverText from '../overtext';
+import OverText from '../over-text';
 import { TData, TEnum } from './type';
 import styles from './index.less';
 
