@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tooltip } from 'antd';
+
 interface IOverTextProps {
   data: string;
   rows?: number;
@@ -8,6 +8,7 @@ interface IOverTextProps {
 }
 
 const END_ELLIPSIS = '...';
+const EXTRA_OPERATE = '更多';
 
 const pxToNumber = (value: string | null): number => {
   if (!value) return 0;
@@ -17,9 +18,8 @@ const pxToNumber = (value: string | null): number => {
 };
 
 const OverText: React.FC<IOverTextProps> = props => {
-  const { data, rows = 3, one } = props;
+  const { data, rows = 2, one } = props;
   const [more, setMore] = React.useState(false);
-  const [tooltip, setIsTooltip] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -32,6 +32,7 @@ const OverText: React.FC<IOverTextProps> = props => {
     if (!ref.current) return;
 
     const current = ref?.current;
+    const offsetHeight = current.offsetHeight;
     const originStyle = window.getComputedStyle(current);
     const originHeight = pxToNumber(originStyle.lineHeight);
     const originPaddingBottom = pxToNumber(originStyle.paddingBottom);
@@ -39,15 +40,13 @@ const OverText: React.FC<IOverTextProps> = props => {
     const rowsHeight = Math.round(
       originHeight * rows + originPaddingBottom + originPaddingTop,
     );
-    const newItem = document.createElement('span');
+    const newItem = document.createElement('a');
 
     if (one) {
       const originWidth = originStyle.width;
       current.style.whiteSpace = 'noWrap';
       const wrapWidth = originStyle.width;
       if (originWidth > wrapWidth) {
-        setIsTooltip(true);
-
         current.style.width = originWidth;
         current.style.overflow = 'hidden';
         current.style.textOverflow = 'ellipsis';
@@ -55,21 +54,13 @@ const OverText: React.FC<IOverTextProps> = props => {
       return;
     }
 
-    if (
-      (rowsHeight > current.offsetHeight && current.textContent === data) ||
-      !rows
-    )
+    if (rowsHeight > current.offsetHeight && current.textContent === data)
       return;
 
-    setIsTooltip(true);
-
     if (!more) {
-      // current.appendChild(newItem)
-      // const textMore = document.createTextNode(END_ELLIPSIS);
-      // newItem.appendChild(textMore);
-      // newItem.onclick = () => setMore(true);
-      // const textNode = document.createTextNode('');
-      // newItem.insertBefore(textNode, textMore);
+      const textMore = document.createTextNode(EXTRA_OPERATE);
+      newItem.appendChild(textMore);
+      newItem.onclick = () => setMore(true);
 
       const measureText = (startLoc = 0, endLoc = data.length): any => {
         const midLoc = Math.floor((startLoc + endLoc) / 2);
@@ -79,20 +70,25 @@ const OverText: React.FC<IOverTextProps> = props => {
         if (startLoc >= endLoc - 1) {
           for (let step = endLoc; step >= startLoc; step--) {
             if (current.offsetHeight > rowsHeight - originHeight) {
-              const currentStepText: string = current.textContent!.slice(
-                0,
-                step,
-              );
+              const currentStepText: string =
+                current.textContent!.slice(
+                  0,
+                  step - `${EXTRA_OPERATE}${END_ELLIPSIS}`.length,
+                ) + END_ELLIPSIS;
               current.textContent = currentStepText;
+              current.insertBefore(newItem, current.childNodes[1]);
             }
           }
+
           return;
         }
+
         if (current.offsetHeight > rowsHeight) {
           return measureText(startLoc, midLoc);
         }
         return measureText(midLoc, endLoc);
       };
+
       measureText();
     } else {
       const textNode = document.createTextNode('收起');
@@ -107,10 +103,7 @@ const OverText: React.FC<IOverTextProps> = props => {
 
   return (
     <>
-      <div ref={ref}>
-        {/* {data} */}
-        {/* {END_ELLIPSIS} */}
-      </div>
+      <div ref={ref}>{data}</div>
     </>
   );
 };
