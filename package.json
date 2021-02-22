@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "antd": "^4.11.2",
+    "echarts": "^5.0.2",
+    "echarts-wordcloud": "^2.0.0",
     "moment": "^2.29.1",
     "react": "^16.12.0"
   },
