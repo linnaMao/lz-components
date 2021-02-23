@@ -16,5 +16,5 @@ group:
 ## API
 
 ```javascript
-const [state, setCbState] = useCbState(value);
+<FastForm defaultValue={} typeArr={} />
 ```
