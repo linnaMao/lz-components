@@ -1,14 +1,16 @@
 import * as React from 'react';
+// import { MTools } from '@/magicUI';
 
 interface IOverTextProps {
   data: string;
   rows?: number;
   suffix?: string;
   one?: boolean;
+  url?: string;
 }
 
 const END_ELLIPSIS = '...';
-const EXTRA_OPERATE = '更多';
+const EXTRA_OPERATE = '查看更多';
 
 const pxToNumber = (value: string | null): number => {
   if (!value) return 0;
@@ -18,7 +20,7 @@ const pxToNumber = (value: string | null): number => {
 };
 
 const OverText: React.FC<IOverTextProps> = props => {
-  const { data, rows = 2, one } = props;
+  const { data, rows = 2, one, url } = props;
   const [more, setMore] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -32,7 +34,7 @@ const OverText: React.FC<IOverTextProps> = props => {
     if (!ref.current) return;
 
     const current = ref?.current;
-    const offsetHeight = current.offsetHeight;
+    // const offsetHeight = current.offsetHeight;
     const originStyle = window.getComputedStyle(current);
     const originHeight = pxToNumber(originStyle.lineHeight);
     const originPaddingBottom = pxToNumber(originStyle.paddingBottom);
@@ -54,13 +56,24 @@ const OverText: React.FC<IOverTextProps> = props => {
       return;
     }
 
-    if (rowsHeight > current.offsetHeight && current.textContent === data)
+    if (
+      rowsHeight > current.offsetHeight &&
+      current.textContent === data &&
+      !url
+    )
       return;
 
     if (!more) {
       const textMore = document.createTextNode(EXTRA_OPERATE);
       newItem.appendChild(textMore);
-      newItem.onclick = () => setMore(true);
+
+      newItem.onclick = () => {
+        if (url) {
+          // MTools.Url.gotoUrl(url);
+        } else {
+          setMore(true);
+        }
+      };
 
       const measureText = (startLoc = 0, endLoc = data.length): any => {
         const midLoc = Math.floor((startLoc + endLoc) / 2);
@@ -76,6 +89,8 @@ const OverText: React.FC<IOverTextProps> = props => {
                   step - `${EXTRA_OPERATE}${END_ELLIPSIS}`.length,
                 ) + END_ELLIPSIS;
               current.textContent = currentStepText;
+              current.insertBefore(newItem, current.childNodes[1]);
+            } else {
               current.insertBefore(newItem, current.childNodes[1]);
             }
           }

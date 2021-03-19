@@ -1,0 +1,103 @@
+.hotCard {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  font-size: 0;
+  padding: 8px;
+  transition: all 0.3s;
+  border-radius: 6px;
+  &:hover {
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.15);
+  }
+  .image,
+  .text,
+  .number {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .image {
+    width: 80px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .text {
+    margin: 0 -80px 0 -80px;
+    width: 100%;
+    padding: 4px 80px 0 90px;
+    .title {
+      font-size: 14px;
+      color: #181818;
+      font-weight: 500;
+      // line-height: 20px;
+      margin-bottom: 6px;
+      word-wrap: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .info {
+      height: 22px;
+      // line-height: 22px;
+      font-size: 13px;
+      color: #4182f0;
+      span {
+        margin-right: 4px;
+      }
+    }
+  }
+  .number {
+    text-align: center;
+    .index {
+      width: 30px;
+      height: 30px;
+      // line-height: 20px;
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 2px;
+      display: inline-block;
+      color: rgba(0, 0, 0, 0.15);
+      font-style: italic;
+    }
+    .hotNum {
+      font-family: 400;
+      font-size: 12px;
+      color: #bfbfbf;
+      height: 18px;
+      i {
+        background-image: url('https://s.newscdn.cn/file/2020/06/620c1a68-6b2d-4fe7-8fca-1185e493fff7.png');
+        background-repeat: no-repeat;
+        background-position: 0 center;
+        width: 9px;
+        height: 12px;
+        margin-right: 2px;
+      }
+      i,
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.hotCard {
+  &:nth-child(1) {
+    .index {
+      color: #ee4a4a !important;
+    }
+  }
+  &:nth-child(2) {
+    .index {
+      color: #f9904a;
+    }
+  }
+  &:nth-child(3) {
+    .index {
+      color: #f7b500;
+    }
+  }
+}
