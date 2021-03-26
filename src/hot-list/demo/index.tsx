@@ -1,5 +1,6 @@
 import * as React from 'react';
 import HotList from '..';
+import HotCard from '../components/card';
 
 import styles from './index.less';
 
@@ -12,6 +13,8 @@ const hotList = [
     video: '高清',
     mediaCount: 13123213,
     hotNum: 12323,
+    content:
+      '今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么',
   },
   {
     id: '123126',
@@ -21,6 +24,8 @@ const hotList = [
     video: '高清',
     mediaCount: 13123213,
     hotNum: 12323,
+    content:
+      '今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么',
   },
   {
     id: '123124',
@@ -30,6 +35,8 @@ const hotList = [
     video: '高清',
     mediaCount: 13123213,
     hotNum: 12323,
+    content:
+      '今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么',
   },
   {
     id: '123128',
@@ -38,7 +45,9 @@ const hotList = [
     title: '你说什么',
     video: '高清',
     mediaCount: 13123213,
-    hotNum: 12323,
+    hotNum: 123212313,
+    content:
+      '今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么',
   },
   {
     id: '123120',
@@ -48,6 +57,8 @@ const hotList = [
     video: '高清',
     mediaCount: 13123213,
     hotNum: 12323,
+    content:
+      '今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么',
   },
   {
     id: '123129',
@@ -57,13 +68,21 @@ const hotList = [
     video: '高清',
     mediaCount: 13123213,
     hotNum: 12323,
+    content:
+      '今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么今天你都干了什么',
   },
 ];
 
 const Demo = () => {
   return (
     <div className={styles.hotWrap}>
-      <HotList data={hotList} />
+      <h2>我是标题</h2>
+      <div className={styles.hotList}>
+        {hotList.map((item, index) => {
+          return <HotCard data={item} index={index + 1} content={true} />;
+        })}
+      </div>
+      {/* <HotList className={styles.hotList} data={hotList} /> */}
     </div>
   );
 };

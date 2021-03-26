@@ -4,11 +4,15 @@ import { THotItem } from '../..';
 
 interface IHotCardProps {
   data: THotItem;
-  index: number;
+  index?: number;
+  content?: boolean;
+  contentFooter?: boolean;
+  info?: boolean;
+  // titleExtra:
 }
 
 const HotCard: React.FC<IHotCardProps> = props => {
-  const { data, index } = props;
+  const { data, index, content, contentFooter } = props;
 
   return (
     <div className={styles.hotCard} key={data.id}>
@@ -17,18 +21,23 @@ const HotCard: React.FC<IHotCardProps> = props => {
       </div>
       <div className={styles.text}>
         <div className={styles.title}>{data.title}</div>
-        <div className={styles.info}>
-          <span>{data.video}</span>
-          <span>媒资: {data.mediaCount}</span>
-        </div>
+        {content && <div className={styles.content}>{data.content}</div>}
+        {contentFooter && (
+          <div className={styles.info}>
+            <span>{data.video}</span>
+            <span>媒资: {data.mediaCount}</span>
+          </div>
+        )}
       </div>
-      <div className={styles.number}>
-        <div className={styles.index}>{`0${index}`.slice(-2)}</div>
-        <div className={styles.hotNum}>
-          <i />
-          <span>{data.hotNum}</span>
+      {index && (
+        <div className={styles.number}>
+          <div className={styles.index}>{`0${index}`.slice(-2)}</div>
+          <div className={styles.hotNum}>
+            <i />
+            <span>{data.hotNum}</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

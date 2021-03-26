@@ -9,15 +9,11 @@
   padding: 8px;
   transition: all 0.3s;
   border-radius: 6px;
+  // box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08);
   &:hover {
     box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.15);
   }
-  .image,
-  .text,
-  .number {
-    display: inline-block;
-    vertical-align: middle;
-  }
+
   .image {
     width: 80px;
     height: 60px;
@@ -28,6 +24,7 @@
     margin: 0 -80px 0 -80px;
     width: 100%;
     padding: 4px 80px 0 90px;
+    flex: 1;
     .title {
       font-size: 14px;
       color: #181818;
@@ -38,6 +35,13 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .content {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.65);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .info {
       height: 22px;
@@ -67,6 +71,7 @@
       font-size: 12px;
       color: #bfbfbf;
       height: 18px;
+      line-height: 25px;
       i {
         background-image: url('https://s.newscdn.cn/file/2020/06/620c1a68-6b2d-4fe7-8fca-1185e493fff7.png');
         background-repeat: no-repeat;

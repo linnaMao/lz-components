@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 import HotCard from './components/card';
 import styles from './index.less';
 
@@ -14,13 +15,14 @@ export type THotItem = {
 
 interface IHotListProps {
   data: THotItem[];
+  className?: any;
 }
 
 const HotList: React.FC<IHotListProps> = props => {
-  const { data } = props;
+  const { data, className } = props;
 
   return (
-    <div className={styles.hotListWrap}>
+    <div className={classnames(styles.hotListWrap, className)}>
       {data.map((item, index) => (
         <HotCard data={item} index={index + 1} />
       ))}
