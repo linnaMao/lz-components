@@ -13,10 +13,17 @@ interface IHotCardProps {
 
 const HotCard: React.FC<IHotCardProps> = props => {
   const { data, index, content, contentFooter } = props;
+  const imgRef = React.useRef<HTMLDivElement>(null);
+
+  // React.useEffect(() => {
+  //   const current = imgRef?.current
+  //   if (!current) return
+  //   current.style.width = `${current?.clientHeight * 4/3}px`
+  // }, [])
 
   return (
     <div className={styles.hotCard} key={data.id}>
-      <div className={styles.image}>
+      <div className={styles.image} ref={imgRef}>
         <img src={data.image} alt="" />
       </div>
       <div className={styles.text}>
