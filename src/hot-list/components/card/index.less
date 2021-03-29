@@ -1,4 +1,5 @@
 .hotCard {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -15,15 +16,17 @@
   }
 
   .image {
+    position: absolute;
     width: 80px;
-    height: 60px;
+    height: calc(100% - 16px);
     border-radius: 4px;
     overflow: hidden;
   }
   .text {
     margin: 0 -80px 0 -80px;
     width: 100%;
-    padding: 4px 80px 0 90px;
+    min-height: 60px;
+    padding: 4px 90px 0 170px;
     flex: 1;
     .title {
       font-size: 14px;

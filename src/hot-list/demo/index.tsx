@@ -1,7 +1,5 @@
 import * as React from 'react';
 import HotList from '..';
-import HotCard from '../components/card';
-
 import styles from './index.less';
 
 const hotList = [
@@ -77,12 +75,14 @@ const Demo = () => {
   return (
     <div className={styles.hotWrap}>
       <h2>我是标题</h2>
-      <div className={styles.hotList}>
-        {hotList.map((item, index) => {
-          return <HotCard data={item} content={true} />;
-        })}
-      </div>
-      {/* <HotList className={styles.hotList} data={hotList} /> */}
+      <HotList
+        className={styles.hotList}
+        data={hotList}
+        content={true}
+        contentFooter={true}
+        number={true}
+      />
+      <div className={styles.mask}></div>
     </div>
   );
 };
