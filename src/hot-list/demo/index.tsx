@@ -79,7 +79,7 @@ const Demo = () => {
       <h2>我是标题</h2>
       <div className={styles.hotList}>
         {hotList.map((item, index) => {
-          return <HotCard data={item} index={index + 1} content={true} />;
+          return <HotCard data={item} content={true} />;
         })}
       </div>
       {/* <HotList className={styles.hotList} data={hotList} /> */}
